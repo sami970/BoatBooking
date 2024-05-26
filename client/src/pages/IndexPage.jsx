@@ -6,6 +6,8 @@ import Sidebar from "../Sidebar/Sidebar";
 import Title from "../Title/Title";
 import City from "../City/City";
 
+
+
 export default function IndexPage() {
   const [apiBoats, setApiBoats] = useState([])
   const [selectedSidePrice, setSelectedSidePrice] = useState(null); 
@@ -19,10 +21,17 @@ export default function IndexPage() {
   // ----------- Input Filter -----------
   const [query, setQuery] = useState("");
   const [city, setCity] = useState("");
+  const [boatType, setBoatType] = useState("");
 
   const handleInputTitleChange = (event) => {
     setQuery(event.target.value);
   };
+
+  const handleInputBoatTypeChange = (event) => {
+    console.log(event.target.value);
+    setBoatType(event.target.value);
+  };
+
   const handleInputCityChange = (event) => {
     setCity(event.target.value);
   };
@@ -38,7 +47,7 @@ export default function IndexPage() {
     setSelectedSidePrice(event.target.value);
   };
 
-  function filteredData(apiBoats, selected, query,city) {
+  function filteredData(apiBoats, selected, query,city,boatType) {
     let filteredProducts = apiBoats;
 
     // Filtering Input Items
@@ -55,23 +64,38 @@ export default function IndexPage() {
       );
     }
 
+
+    
+    if (boatType ) {
+      console.log(boatType);
+      
+      if(boatType.toLowerCase()==="all"){
+        filteredProducts = filteredProducts
+      }
+      else{
+        filteredProducts = filteredProducts.filter(
+          (boat) => boat.boattype.toLowerCase().indexOf(boatType.toLowerCase()) !== -1
+        );
+      }
+
+      
+    }
+
     // Applying selected filter
     if (selected) 
     {  
 
       filteredProducts = filteredProducts.filter(
         
-        ({ address, price, title }) =>
-          price.toString() === selected ||
-           address === selected ||  
-           title === selected
+        ({price }) =>
+          price <= parseInt(selected)  
       );
     }
 
     return filteredProducts;
   }
 
-  const result = filteredData(apiBoats, selectedSidePrice, query,city);
+  const result = filteredData(apiBoats, selectedSidePrice, query,city,boatType);
 
   return (
   <div>    
@@ -81,7 +105,29 @@ export default function IndexPage() {
    
       <div className="flex gap-2 border border-gray-300 rounded-full py-2 px-5 shadow-md shadow-gray-300">
       <Sidebar className="flex justify-between" handleChange={handleChange} />
-      <Title query={query} handleInputChange={handleInputTitleChange} />                   
+      <Title query={query} handleInputChange={handleInputTitleChange} />  
+
+      
+      
+      <select
+        className="flex gap-2 border border-gray-300 rounded-full py-2 px-5 shadow-md shadow-gray-300 w-51 h-10 bg-blue-200 rounded-partial-tl "
+        name="boatType"
+        value={boatType}
+        onChange={handleInputBoatTypeChange}
+      >
+        <option value="all">All</option>
+        <option value="motorboat">Motorboat</option>
+        <option value="rib">RIB</option>
+        <option value="jet ski">Jet ski</option>
+        <option value="houseboat">Houseboat</option>
+        <option value="motor yacht">Motor yacht</option>
+        <option value="sailboat">Sailboat</option>
+        <option value="catamaran">Catamaran</option>
+        <option value="gulet">Gulet</option>
+        <option value="sailing yacht">Sailing yacht</option>
+      </select>
+    
+
       <City query={city} handleInputChange={handleInputCityChange} />                   
      
       </div>

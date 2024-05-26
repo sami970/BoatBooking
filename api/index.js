@@ -29,6 +29,8 @@ app.use(cors({
   origin: 'http://localhost:5173',
 }));
 
+// store images in Amazon Cloud Store
+//Not Done because of fees
 async function uploadToS3(path, originalFilename, mimetype) {
   const client = new S3Client({
     region: 'us-east-1',

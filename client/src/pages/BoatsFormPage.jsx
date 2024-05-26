@@ -90,8 +90,25 @@ export default function BoatsFormPage() {
         {preInput('Title', 'Title for your boat. should be short and catchy as in advertisement')}
         <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder="title, for example: My lovely apt"/>
         
-        {preInput('Boat type', 'Choose boat type')}
-        <input type="text" value={boattype} onChange={ev => setBoatType(ev.target.value)} placeholder="boat type"/>
+        {preInput('Boat type')}
+        
+
+        <select
+        name="boattype"
+        value={boattype}
+        onChange={ev => setBoatType(ev.target.value)}
+      >
+        
+        <option value="motorboat">Motorboat</option>
+        <option value="rib">RIB</option>
+        <option value="jet ski">Jet ski</option>
+        <option value="houseboat">Houseboat</option>
+        <option value="motor yacht">Motor yacht</option>
+        <option value="sailboat">Sailboat</option>
+        <option value="catamaran">Catamaran</option>
+        <option value="gulet">Gulet</option>
+        <option value="sailing yacht">Sailing yacht</option>
+      </select>
 
         {preInput('Address', 'Address to this boat')}
         <input type="text" value={address} onChange={ev => setAddress(ev.target.value)}placeholder="address"/>
