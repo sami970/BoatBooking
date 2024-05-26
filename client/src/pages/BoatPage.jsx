@@ -1,13 +1,20 @@
-import {Link, useParams} from "react-router-dom";
+import {Link, Navigate,useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+
 import axios from "axios";
 import BookingWidget from "../components/Booking/BookingWidget";
 import BoatGallery from "../components/Booking/BoatGallery";
 import AddressLink from "../components/Booking/AddressLink";
+import {useContext} from "react";
+import {UserContext} from "../UserContext.jsx";
+
 
 export default function BoatPage() {
+  const {user} = useContext(UserContext);
   const {id} = useParams();
   const [boat,setBoat] = useState(null);
+  
+
   useEffect(() => {
     if (!id) {
       return;
@@ -18,6 +25,13 @@ export default function BoatPage() {
   }, [id]);
 
   if (!boat) return '';
+
+  if (!user)
+    {
+       return <Navigate to={'/login'} />
+       
+     
+    }
 
 
 

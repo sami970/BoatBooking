@@ -25,6 +25,12 @@ export default function BookingWidget({boat}) {
   }
 
   async function bookThisboat() {
+
+    if (!phone)
+    {
+
+      return alert("You need to enter a phone....");
+    }
     const response = await axios.post('/bookings', {
       startDate,stopDate,numberOfGuests,name,phone,
       boat:boat._id,
