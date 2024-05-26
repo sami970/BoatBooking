@@ -1,9 +1,10 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import AddressLink from "../AddressLink";
-import BoatGallery from "../BoatGallery";
-import BookingDates from "../BookingDates";
+import AddressLink from "../components/Booking/AddressLink";
+import BoatGallery from "../components/Booking/BoatGallery";
+import BookingDates from "../components/Booking/BookingDates";
+
 
 export default function BookingPage() {
   const {id} = useParams();
@@ -22,6 +23,7 @@ export default function BookingPage() {
   if (!booking) {
     return '';
   }
+  
 
   return (
     <div className="my-8">

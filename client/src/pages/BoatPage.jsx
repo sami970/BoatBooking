@@ -1,9 +1,9 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import BookingWidget from "../BookingWidget";
-import BoatGallery from "../BoatGallery";
-import AddressLink from "../AddressLink";
+import BookingWidget from "../components/Booking/BookingWidget";
+import BoatGallery from "../components/Booking/BoatGallery";
+import AddressLink from "../components/Booking/AddressLink";
 
 export default function BoatPage() {
   const {id} = useParams();
@@ -32,8 +32,8 @@ export default function BoatPage() {
             <h2 className="font-semibold text-2xl">Description</h2>
             {boat.description}
           </div>
-          Start-date: {boat.startDate}<br />
-          Stop-date: {boat.stopDate}<br />
+          Check-in: {boat.startDate}<br />
+          Check-out: {boat.stopDate}<br />
           Max number of guests: {boat.maxGuests}
         </div>
         <div>
