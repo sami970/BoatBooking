@@ -28,16 +28,40 @@ export default function BookingWidget({boat}) {
 
     if (!phone)
     {
-
       return alert("You need to enter a phone....");
     }
-    const response = await axios.post('/bookings', {
-      startDate,stopDate,numberOfGuests,name,phone,
-      boat:boat._id,
-      price:numberOfdags * boat.price,
-    });
-    const bookingId = response.data._id;
-    setRedirect(`/account/bookings/${bookingId}`);
+    console.log(boat._id);
+    var startDateNum = Date.parse(startDate);
+    var stopDateNum = Date.parse(stopDate);
+
+    const getBookings = await axios.get('/bookings/'+boat._id); 
+    //console.log("dates.:",startDateNum,stopDateNum);
+
+    const bookingArray = getBookings.data;
+    var proceed = true;
+    for(var i = 0; i < bookingArray.length; i++) {
+      var cStartdate = Date.parse(bookingArray[i].startDate);
+      var cStopdate = Date.parse(bookingArray[i].stopDate);
+
+      if ((startDateNum >= cStartdate && startDateNum <= cStopdate) ||
+      ( stopDateNum >= cStartdate && stopDateNum <= cStopdate) )
+        {
+          proceed = false;
+          console.log(bookingArray[i].startDate," ",bookingArray[i].stopDate);
+          alert("boat is booked in period from "+ bookingArray[i].startDate +" To "+bookingArray[i].stopDate);          
+        }    
+   
+    }
+    if (proceed)
+    {
+      const response = await axios.post('/bookings', {
+        startDate,stopDate,numberOfGuests,name,phone,
+        boat:boat._id,
+        price:numberOfdags * boat.price,
+      });
+      const bookingId = response.data._id;
+      setRedirect(`/account/bookings/${bookingId}`);
+    }
   }
 
   if (redirect) {
