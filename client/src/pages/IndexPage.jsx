@@ -121,8 +121,9 @@ export default function IndexPage() {
         <option value="motor yacht">Motor yacht</option>
         <option value="sailboat">Sailboat</option>
         <option value="catamaran">Catamaran</option>
-        <option value="gulet">Gulet</option>
+        <option value="gulet">Gulet</option>             
         <option value="sailing yacht">Sailing yacht</option>
+        <option value="boat without licence">Boat without licence</option>  
       </select>    
 
       <City query={city} handleInputChange={handleInputCityChange} />                   

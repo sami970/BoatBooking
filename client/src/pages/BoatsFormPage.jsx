@@ -108,6 +108,7 @@ export default function BoatsFormPage() {
         <option value="catamaran">Catamaran</option>
         <option value="gulet">Gulet</option>
         <option value="sailing yacht">Sailing yacht</option>
+        <option value="boat without licence">Boat without licence</option> 
       </select>
 
         {preInput('Address', 'Address to this boat')}
