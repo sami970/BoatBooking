@@ -123,17 +123,17 @@ export default function BoatsFormPage() {
         </div>
         {preInput('Extra info','house rules, etc')}
         <textarea value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)} />
-        {preInput('Start & Stop dates','add start and stop times, remember to have some time window for cleaning the boat between guests')}
+        {preInput('Check-in & Check-out','add start and stop times, remember to have some time window for cleaning the boat between guests')}
         <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
           <div>
-            <h3 className="mt-2 -mb-1">Start date</h3>
+            <h3 className="mt-2 -mb-1">Check-in</h3>
             <input type="text"
                    value={startDate}
                    onChange={ev => setStartDate(ev.target.value)}
                    placeholder="14"/>
           </div>
           <div>
-            <h3 className="mt-2 -mb-1">Stop date</h3>
+            <h3 className="mt-2 -mb-1">Check-out</h3>
             <input type="text"
                    value={stopDate}
                    onChange={ev => setStopDate(ev.target.value)}
