@@ -2,9 +2,9 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import Image from "../Image.jsx";
-import Sidebar from "../Sidebar/Sidebar";
-import Title from "../Title/Title";
-import City from "../City/City";
+import Sidebar from "../components/Sidebar/Sidebar";
+import Title from "../components/Title/Title";
+import City from "../components/City/City";
 
 
 
@@ -105,9 +105,7 @@ export default function IndexPage() {
    
       <div className="flex gap-2 border border-gray-300 rounded-full py-2 px-5 shadow-md shadow-gray-300">
       <Sidebar className="flex justify-between" handleChange={handleChange} />
-      <Title query={query} handleInputChange={handleInputTitleChange} />  
-
-      
+      <Title query={query} handleInputChange={handleInputTitleChange} />        
       
       <select
         className="flex gap-2 border border-gray-300 rounded-full py-2 px-5 shadow-md shadow-gray-300 w-51 h-10 bg-blue-200 rounded-partial-tl "
@@ -123,10 +121,10 @@ export default function IndexPage() {
         <option value="motor yacht">Motor yacht</option>
         <option value="sailboat">Sailboat</option>
         <option value="catamaran">Catamaran</option>
-        <option value="gulet">Gulet</option>
+        <option value="gulet">Gulet</option>             
         <option value="sailing yacht">Sailing yacht</option>
-      </select>
-    
+        <option value="boat without licence">Boat without licence</option>  
+      </select>    
 
       <City query={city} handleInputChange={handleInputCityChange} />                   
      
@@ -141,7 +139,8 @@ export default function IndexPage() {
         <Link to={'/boat/'+result._id}>
           <div className="bg-gray-500 mb-2 rounded-2xl flex">
             {result.photos?.[0] && (
-              <Image className="rounded-2xl object-cover aspect-square" src={result.photos?.[0]} alt=""/>
+              <Image className="rounded-2xl object-cover aspect-square"
+               src={result.photos?.[0]} alt=""/>
             )}
           </div>
           <h2 className="font-bold">{result.address}</h2>
@@ -152,6 +151,7 @@ export default function IndexPage() {
         </Link>
       ))}
     </div>
+
     </div>
   );
 }

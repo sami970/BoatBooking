@@ -1,5 +1,5 @@
 import "./BoatType.css";
-import Input from "../../components/Input";
+
 
 function BoatType({ handleChange }) {
   return (

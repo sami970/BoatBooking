@@ -107,8 +107,7 @@ app.post('/api/login', async (req,res) => {
 
 app.get('/api/profile', (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
-  const {token} = req.cookies;
-  console.log("profile her...");
+  const {token} = req.cookies;  
 
   if (token) {
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
@@ -240,11 +239,21 @@ app.post('/api/bookings', async (req, res) => {
 });
 
 
-
+//Get all bookings by UserId
 app.get('/api/bookings', async (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   const userData = await getUserDataFromReq(req);
   res.json( await Booking.find({user:userData.id}).populate('boat') );
 });
+
+//Get all bookings by boat Id
+app.get('/api/bookings/:id', async (req,res) => {
+  mongoose.connect(process.env.MONGO_URL);
+  const {id} = req.params;
+  //res.json(await Booking.find(boat._id));
+  console.log("Get all bookings by boat Id:"+id);
+  res.json( await Booking.find({boat:id}) );  
+});
+
 console.log("Server running...");
 app.listen(4000);

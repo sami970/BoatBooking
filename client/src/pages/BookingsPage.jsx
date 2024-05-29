@@ -4,7 +4,7 @@ import axios from "axios";
 import BoatImg from "../BoatImg";
 import {differenceInCalendarDays, format} from "date-fns";
 import {Link} from "react-router-dom";
-import BookingDates from "../BookingDates";
+import BookingDates from "../components/Booking/BookingDates";
 
 export default function BookingsPage() {
   const [bookings,setBookings] = useState([]);

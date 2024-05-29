@@ -11,7 +11,19 @@ export default function LoginPage() {
   async function handleLoginSubmit(ev) {
     ev.preventDefault();
     try {
+      if (!email || !password)
+        {
+          alert('Email and pawwsord needed...');
+          return <Navigate to={'/login'} />
+        }
       const {data} = await axios.post('/login', {email,password});
+      if (data ==="not found")
+      {
+        alert('Login not found...');
+        return <Navigate to={'/login'} />
+      }
+     
+
       setUser(data);
       alert('Login successful');
       setRedirect(true);
